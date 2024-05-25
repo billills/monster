@@ -12,19 +12,33 @@
             justify-content: center;
             height: 100vh;
             font-family: Arial, sans-serif;
+            position: relative; /* added for positioning the banner */
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
         }
+        /* added styles for the banner */
+        #banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%; /* one-fourth of the screen width */
+            z-index: 1; /* ensure the banner stays on top */
+        }
     </style>
 </head>
 <body>
+    <!-- Banner image -->
+    <img id="banner" src="mm.png" alt="Banner">
+
+    <!-- Audio element -->
     <audio id="monsterKillSound">
         <source src="monster.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
     
+    <!-- Button for toggling sound -->
     <button id="toggleSoundButton">Turn Sound Off</button>
 
     <script>
@@ -37,6 +51,32 @@
             if (soundPreference === 'off') {
                 audio.muted = true;
                 toggleButton.textContent = 'Turn Sound On';
+            } else {
+                audio.muted = false;
+                audio.play().catch(function(error) {
+                    console.log('Autoplay was prevented:', error);
+                });
+                toggleButton.textContent = 'Turn Sound Off';
+            }
+
+            // Add event listener to the toggle button
+            toggleButton.addEventListener('click', function() {
+                if (audio.muted) {
+                    audio.muted = false;
+                    audio.play();
+                    toggleButton.textContent = 'Turn Sound Off';
+                    localStorage.setItem('soundPreference', 'on');
+                } else {
+                    audio.muted = true;
+                    toggleButton.textContent = 'Turn Sound On';
+                    localStorage.setItem('soundPreference', 'off');
+                }
+            });
+        };
+    </script>
+</body>
+</html>
+
             } else {
                 audio.muted = false;
                 audio.play().catch(function(error) {
