@@ -14,7 +14,10 @@
     <script>
         window.onload = function() {
             var audio = document.getElementById('monsterKillSound');
-            audio.play();
+            audio.play().catch(function(error) {
+                console.log('Autoplay was prevented:', error);
+                // Handle the error
+            });
         };
     </script>
 </body>
