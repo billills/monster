@@ -6,25 +6,31 @@
     <title>Monster Kill</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        #banner {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 100%;
+            height: auto;
+            z-index: 1;
+        }
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            font-family: Arial, sans-serif;
-            position: relative; /* added for positioning the banner */
         }
         button {
+            margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
-        }
-        /* added styles for the banner */
-        #banner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 25%; /* one-fourth of the screen width */
-            z-index: 1; /* ensure the banner stays on top */
         }
     </style>
 </head>
@@ -32,14 +38,16 @@
     <!-- Banner image -->
     <img id="banner" src="mm.png" alt="Banner">
 
-    <!-- Audio element -->
-    <audio id="monsterKillSound">
-        <source src="monster.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
-    
-    <!-- Button for toggling sound -->
-    <button id="toggleSoundButton">Turn Sound Off</button>
+    <div class="container">
+        <!-- Audio element -->
+        <audio id="monsterKillSound">
+            <source src="monster.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <!-- Button for toggling sound -->
+        <button id="toggleSoundButton">Turn Sound Off</button>
+    </div>
 
     <script>
         window.onload = function() {
@@ -51,32 +59,6 @@
             if (soundPreference === 'off') {
                 audio.muted = true;
                 toggleButton.textContent = 'Turn Sound On';
-            } else {
-                audio.muted = false;
-                audio.play().catch(function(error) {
-                    console.log('Autoplay was prevented:', error);
-                });
-                toggleButton.textContent = 'Turn Sound Off';
-            }
-
-            // Add event listener to the toggle button
-            toggleButton.addEventListener('click', function() {
-                if (audio.muted) {
-                    audio.muted = false;
-                    audio.play();
-                    toggleButton.textContent = 'Turn Sound Off';
-                    localStorage.setItem('soundPreference', 'on');
-                } else {
-                    audio.muted = true;
-                    toggleButton.textContent = 'Turn Sound On';
-                    localStorage.setItem('soundPreference', 'off');
-                }
-            });
-        };
-    </script>
-</body>
-</html>
-
             } else {
                 audio.muted = false;
                 audio.play().catch(function(error) {
