@@ -13,38 +13,39 @@
             position: relative;
         }
         #banner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 25%; /* Set the banner width to one-fourth of the screen */
-            max-width: 100%; /* Ensure the banner doesn't exceed the viewport width */
+            width: 100%; /* Make the banner occupy full width */
             height: auto;
-            z-index: 1;
         }
         .container {
-            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            padding-top: 20px; /* Adjust padding to create space between banner and button */
+            padding-top: 20px; /* Add padding for spacing between banner and content */
         }
         button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
         }
+        .items-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .item {
+            flex: 0 0 25%; /* Each item occupies one-fourth of the container width */
+            max-width: 300px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
         @media only screen and (max-width: 768px) {
             /* Adjust styles for smaller screens */
-            #banner {
-                width: 100%; /* Make the banner occupy full width on smaller screens */
-                margin-left: 0; /* Remove margin on smaller screens */
-                padding-left: 0; /* Remove padding on smaller screens */
-            }
-            .container {
-                margin-left: 0; /* Remove margin on smaller screens */
-                padding-left: 0; /* Remove padding on smaller screens */
+            .item {
+                flex: 0 0 50%; /* Each item occupies half of the container width on smaller screens */
             }
         }
     </style>
@@ -62,6 +63,19 @@
             <source src="monster.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
+
+        <!-- Items for sale -->
+        <div class="items-container">
+            <!-- Example item -->
+            <div class="item">
+                <h2>Item Title</h2>
+                <p>Description of the item.</p>
+                <p>$10.00</p>
+                <button>Add to Cart</button>
+            </div>
+
+            <!-- Add more items here -->
+        </div>
     </div>
 
     <script>
@@ -94,5 +108,8 @@
             });
         };
     </script>
+</body>
+</html>
+
 </body>
 </html>
