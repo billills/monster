@@ -16,7 +16,13 @@
             var audio = document.getElementById('monsterKillSound');
             audio.play().catch(function(error) {
                 console.log('Autoplay was prevented:', error);
-                // Handle the error
+                // Provide a fallback interaction
+                var playButton = document.createElement('button');
+                playButton.innerText = 'Play Sound';
+                playButton.onclick = function() {
+                    audio.play();
+                };
+                document.body.appendChild(playButton);
             });
         };
     </script>
