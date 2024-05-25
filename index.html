@@ -91,6 +91,7 @@
             } else {
                 audio.muted = false;
                 toggleButton.textContent = 'Turn Sound Off';
+                audio.play(); // Play the audio on page load if sound is on
             }
 
             // Add event listener to the toggle button
@@ -108,8 +109,5 @@
             });
         };
     </script>
-</body>
-</html>
-
 </body>
 </html>
