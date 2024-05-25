@@ -52,7 +52,7 @@
         </audio>
         
         <!-- Button for toggling sound -->
-        <button id="toggleSoundButton">Turn Sound On</button>
+        <button id="toggleSoundButton">Turn Sound Off</button>
     </div>
 
     <script>
@@ -67,18 +67,21 @@
                 toggleButton.textContent = 'Turn Sound On';
             } else {
                 audio.muted = false;
+                audio.play().catch(function(error) {
+                    console.log('Autoplay was prevented:', error);
+                });
                 toggleButton.textContent = 'Turn Sound Off';
             }
 
             // Add event listener to the toggle button
             toggleButton.addEventListener('click', function() {
-                if (audio.paused) {
+                if (audio.muted) {
+                    audio.muted = false;
                     audio.play();
                     toggleButton.textContent = 'Turn Sound Off';
                     localStorage.setItem('soundPreference', 'on');
                 } else {
-                    audio.pause();
-                    audio.currentTime = 0; // Reset audio to start
+                    audio.muted = true;
                     toggleButton.textContent = 'Turn Sound On';
                     localStorage.setItem('soundPreference', 'off');
                 }
