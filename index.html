@@ -15,7 +15,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%; /* Set the banner width to 100% */
+            width: 25%; /* Set the banner width to one-fourth of the screen */
             height: auto;
             z-index: 1;
         }
@@ -25,11 +25,18 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            margin-left: 25%; /* Adjust container's margin to accommodate the banner */
         }
         button {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
+        }
+        @media only screen and (max-width: 768px) {
+            /* Adjust styles for smaller screens */
+            .container {
+                margin-left: 0; /* Remove margin for smaller screens */
+            }
         }
     </style>
 </head>
@@ -39,7 +46,7 @@
 
     <div class="container">
         <!-- Audio element -->
-        <audio id="monsterKillSound">
+        <audio id="monsterKillSound" autoplay>
             <source src="monster.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
@@ -60,9 +67,6 @@
                 toggleButton.textContent = 'Turn Sound On';
             } else {
                 audio.muted = false;
-                audio.play().catch(function(error) {
-                    console.log('Autoplay was prevented:', error);
-                });
                 toggleButton.textContent = 'Turn Sound Off';
             }
 
@@ -70,7 +74,6 @@
             toggleButton.addEventListener('click', function() {
                 if (audio.muted) {
                     audio.muted = false;
-                    audio.play();
                     toggleButton.textContent = 'Turn Sound Off';
                     localStorage.setItem('soundPreference', 'on');
                 } else {
