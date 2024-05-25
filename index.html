@@ -46,7 +46,7 @@
 
     <div class="container">
         <!-- Audio element -->
-        <audio id="monsterKillSound" autoplay>
+        <audio id="monsterKillSound">
             <source src="monster.mp3" type="audio/mp3">
             Your browser does not support the audio element.
         </audio>
@@ -72,12 +72,13 @@
 
             // Add event listener to the toggle button
             toggleButton.addEventListener('click', function() {
-                if (audio.muted) {
-                    audio.muted = false;
+                if (audio.paused) {
+                    audio.play();
                     toggleButton.textContent = 'Turn Sound Off';
                     localStorage.setItem('soundPreference', 'on');
                 } else {
-                    audio.muted = true;
+                    audio.pause();
+                    audio.currentTime = 0; // Reset audio to start
                     toggleButton.textContent = 'Turn Sound On';
                     localStorage.setItem('soundPreference', 'off');
                 }
