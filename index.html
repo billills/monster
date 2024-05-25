@@ -17,7 +17,7 @@
             top: 0;
             left: 0;
             width: 25%; /* Set the banner width to one-fourth of the screen */
-            max-width: 500px; /* Ensure the banner doesn't exceed the viewport width */
+            max-width: 100%; /* Ensure the banner doesn't exceed the viewport width */
             height: auto;
             z-index: 1;
         }
@@ -32,7 +32,6 @@
         }
         button {
             margin-top: 20px;
-            center: 0px;
             padding: 10px 20px;
             font-size: 16px;
         }
@@ -57,8 +56,9 @@
     <div class="container">
         <!-- Audio element -->
         <audio id="monsterKillSound">
-            <iframe src="monster.mp3" allow="autoplay">
-           </audio>
+            <source src="monster.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
         
         <!-- Button for toggling sound -->
         <button id="toggleSoundButton">Turn Sound Off</button>
