@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mmember Subscription</title>
+    <title>MMember Subscription</title>
     <style>
         body {
             margin: 0;
@@ -28,9 +28,14 @@
         }
         h1 {
             color: #1a161c; /* Set the color for the heading */
+            font-weight: bold;
         }
         p, h2 {
             color: white;
+        }
+        .mMember {
+            color: #c6c2c9;
+            font-weight: bold;
         }
         ul {
             text-align: left;
@@ -62,9 +67,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Join mmember</h1>
-        <p>Become a mmember today and enjoy exclusive benefits!</p>
-        <h2>Benefits of Being a mmember:</h2>
+        <h1>Join <span class="mMember">MMember</span></h1>
+        <p>Become a <span class="mMember">MMember</span> today and enjoy exclusive benefits!</p>
+        <h2>Benefits of Being a <span class="mMember">MMember</span>:</h2>
         <ul>
             <li>Exclusive access to special events</li>
             <li>Monthly newsletters with insider updates</li>
@@ -77,7 +82,7 @@
 
     <script>
         function subscribe() {
-            alert('Thank you for subscribing to mmember!');
+            alert('Thank you for subscribing to MMember!');
             // Redirect to a subscription page or handle the subscription logic here
             // window.location.href = 'subscriptionPage.html';
         }
