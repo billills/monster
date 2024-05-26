@@ -71,18 +71,8 @@
             Your browser does not support the audio element.
         </audio>
 
-        <!-- Items for sale -->
-        <div class="items-container">
-            <!-- Example item -->
-            <div class="item">
-                <img src="mask.png" alt="">
-                <h2>Monster Mask</h2>
-                <p>$10.00</p>
-                <button href="mask.html">Purchase</button>
-            </div>
-
-            <!-- Add more items here -->
-        </div>
+        <!-- Redirect Button -->
+        <button onclick="window.location.href='mmember.html'">mmember</button>
     </div>
 
     <script>
@@ -113,16 +103,6 @@
                     toggleButton.textContent = 'Turn Sound On';
                     localStorage.setItem('soundPreference', 'off');
                 }
-            });
-
-            // Add event listener to the purchase buttons
-            var purchaseButtons = document.querySelectorAll('.purchaseButton');
-            purchaseButtons.forEach(function(button) {
-                button.addEventListener('click', function() {
-                    var itemName = this.parentNode.querySelector('h2').textContent;
-                    var fileName = itemName.replace(/\s+/g, '-').toLowerCase() + '.txt';
-                    alert('File "' + fileName + '" has been created.');
-                });
             });
         };
     </script>
