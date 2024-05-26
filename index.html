@@ -118,5 +118,30 @@
             });
         };
     </script>
+
+    <body>
+    <div id="message"></div>
+    <script>
+        // Function to parse query parameters from URL
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Function to display message based on query parameter
+        function displayMessage() {
+            const action = getQueryParam('action');
+            const messageDiv = document.getElementById('message');
+            if (action === 'success') {
+                messageDiv.innerText = "Congratulations! You are now a member of MMember!";
+            } else if (action === 'failed') {
+                messageDiv.innerText = "Failed to become a member. Please try again later.";
+            }
+        }
+
+        // Call displayMessage function when the page loads
+        window.onload = displayMessage;
+    </script>
+        
 </body>
 </html>
