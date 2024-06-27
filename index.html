@@ -3,147 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monster Kill</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <title>Rivy x Starve</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            position: relative;
-            background-color: #433e46; /* Set the full background color */
-            color: white; /* Set the default text color to white */
+            transition: background-color 0.3s, color 0.3s;
         }
-        #banner {
-            width: 100%; /* Make the banner occupy full width */
-            height: auto;
-        }
-        .container {
+        .navbar {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            padding-top: 20px; /* Add padding for spacing between banner and content */
+            padding: 1em;
+            background-color: #333;
+            color: white;
         }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #c6c2c9; /* Button background color */
-            color: black; /* Button text color */
-            border: none;
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1em;
+        }
+        .content {
+            padding: 2em;
+        }
+        .about-me {
+            background-color: #f0f0f0;
+            padding: 2em;
+            border-radius: 8px;
+            color: #333;
+        }
+        .about-me p {
+            color: #333;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: white;
+        }
+        .dark-mode .about-me {
+            background-color: #444;
+            color: white;
+        }
+        .dark-mode .navbar {
+            background-color: #222;
+        }
+        .theme-toggle {
             cursor: pointer;
+            padding: 0.5em;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 1em;
         }
-        button:hover {
-            background-color: #a3a0a8; /* Darker button background on hover */
+        .colored-paragraphs p:nth-child(1) {
+            color: #999;
         }
-        .items-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
+        .colored-paragraphs p:nth-child(2) {
+            color: #666;
         }
-        .item {
-            flex: 0 0 25%;
-            max-width: 300px;
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-            background-color: #2c319c; /* Set the background color */
-            color: white; /* Set the text color to white for better visibility */
-        }
-        .item img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-        }
-        @media only screen and (max-width: 768px) {
-            /* Adjust styles for smaller screens */
-            .item {
-                flex: 0 0 50%;
-            }
+        .colored-paragraphs p:nth-child(3) {
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <!-- Banner image -->
-    <img id="banner" src="mm.png" alt="Banner">
-
-    <div class="container">
-        <!-- Button for toggling sound -->
-        <button id="toggleSoundButton">Turn Sound On</button>
-
-        <!-- Audio element -->
-        <audio id="monsterKillSound">
-            <source src="monster.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-
-       <!-- MM -->
-        <h2>Become a MMember and get special benefits. after joining you will get special messages from our community, things to join us are the special car plates you can get, Exclusive social media on most platforms and much more</h2> 
-
-        <!-- Redirect Button -->
-        <button onclick="window.location.href='mmember.html'">MMember</button>
+    <div class="navbar">
+        <div class="logo">
+            <h1>Rivy x Starve</h1>
+        </div>
+        <div class="links">
+            <a href="#instagram">Instagram</a>
+            <a href="#discord">Discord</a>
+            <a href="#other">Other Links</a>
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">Dark Mode</button>
+    </div>
+    
+    <div class="content">
+        <h2>About Me</h2>
+        <div class="about-me">
+            <div class="colored-paragraphs">
+                <p>This is a paragraph about me. It's in a lighter grey color.</p>
+                <p>This is another paragraph about me. It's in a medium grey color.</p>
+                <p>This is yet another paragraph about me. It's in a darker grey color.</p>
+            </div>
+        </div>
     </div>
 
     <script>
-        window.onload = function() {
-            var audio = document.getElementById('monsterKillSound');
-            var toggleButton = document.getElementById('toggleSoundButton');
-
-            // Check user preference from localStorage
-            var soundPreference = localStorage.getItem('soundPreference');
-            if (soundPreference === 'off') {
-                audio.muted = true;
-                toggleButton.textContent = 'Turn Sound On';
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggleBtn = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggleBtn.textContent = 'Light Mode';
             } else {
-                audio.muted = false;
-                toggleButton.textContent = 'Turn Sound Off';
-                audio.play(); // Play the audio on page load if sound is on
-            }
-
-            // Add event listener to the toggle button
-            toggleButton.addEventListener('click', function() {
-                if (audio.paused) {
-                    audio.play();
-                    toggleButton.textContent = 'Turn Sound Off';
-                    localStorage.setItem('soundPreference', 'on');
-                } else {
-                    audio.pause();
-                    audio.currentTime = 0; // Reset audio to start
-                    toggleButton.textContent = 'Turn Sound On';
-                    localStorage.setItem('soundPreference', 'off');
-                }
-            });
-        };
-    </script>
-
- </style>
-</head>
-<body>
-    <div id="message"></div>
-    <script>
-        // Function to parse query parameters from URL
-        function getQueryParam(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        // Function to display message based on query parameter
-        function displayMessage() {
-            const action = getQueryParam('action');
-            const messageDiv = document.getElementById('message');
-            if (action === 'success') {
-                messageDiv.innerText = "Congratulations! You are now a member of MMember!";
-            } else if (action === 'failed') {
-                messageDiv.innerText = "Failed to become a member. Please try again later.";
+                themeToggleBtn.textContent = 'Dark Mode';
             }
         }
-
-        // Call displayMessage function when the page loads
-        window.onload = displayMessage;
     </script>
-        
 </body>
 </html>
