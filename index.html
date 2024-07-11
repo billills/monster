@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #28282B , #003366 );
+            background: linear-gradient(to right, #28282B, #003366);
             color: #333;
             margin: 0;
             display: flex;
@@ -62,9 +62,44 @@
         .link:hover {
             background: #feb47b;
         }
+
+        .instagram-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #C13584;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .instagram-link img {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .instagram-link:hover {
+            background: #E1306C;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="profile">
-            <img src="your-profile-picture
+            <img src="your-profile-picture.jpg" alt="">
+            <h1>Ryvvie</h1>
+            <p>Drop a Gear🏎️</p>
+        </div>
+        <div class="links">
+            <a href="https://example.com" class="link">Link 4</a>
+            <a href="https://instagram.com/rivvye.c7" class="instagram-link">
+                <img src="instagram-logo.png" alt="Instagram">
+                Instagram
+            </a>
+        </div>
+    </div>
+</body>
+</html>
